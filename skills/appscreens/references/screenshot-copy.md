@@ -44,11 +44,19 @@ The response has the new revision. If a revision conflicts, re-read the project 
 
 Only saved copy can be previewed. Start a preview when the user asked for one or it is part of the approved task. For a browser listing review, use the [listing preview](../SKILL.md#show-a-store-listing-preview). Record the revision and selection you ask the user to review. The link follows the saved project, so check the revision again before exporting. If it changed, review the current design before proceeding.
 
-For chat images, call `render_project_preview` with the requested screenshot IDs, languages and target IDs. Wait with `wait_for_operation`, respecting `pollAfterSeconds`. For an overview, call `get_preview_image` with `mode: contact_sheet` and follow `nextOffset`. Each language and size is one row, pages left to right in order; filter by `languageCode` and `targetId` to get one row per call. Show the sheet to the user as it is rather than downloading pages to arrange them yourself. Check changed pages with `mode: image` for text fit, placeholders and captures that show the wrong device. For store artwork, use the size's `safeArea` from `list_render_targets` to check the focal point and text.
+For chat images, call `render_project_preview` with the requested screenshot IDs, languages and target IDs. Use `wait_for_operation` with `timeoutSeconds: 25` and follow [Wait efficiently](#wait-efficiently), including the 35-second Codex runner window. For an overview, call `get_preview_image` with `mode: contact_sheet` and follow `nextOffset`. Each language and size is one row, pages left to right in order; filter by `languageCode` and `targetId` to get one row per call. Show the sheet to the user as it is rather than downloading pages to arrange them yourself. Review every page in the sheets. Open specific pages with `mode: image` when text fit, crops, overlaps, placeholders or device captures are unclear. Use the same completed operation for details; re-render only after edits or when the preview is no longer available. For store artwork, use the size's `safeArea` from `list_render_targets` to check the focal point and text.
 
 Free accounts can render cloud previews of projects that use Free features. If a project uses Pro features, the preview reports `PLAN_REQUIRED`. Offer the plan link from `start_subscription_setup`, or ask whether to adapt the design to use Free features. The editor remains available for reviewing the saved design. Previews and exports share one allowance, so reuse a finished preview and render only changed pages after an edit. If you cannot view images, ask the user to check them before exporting.
 
 Fix failing copy within the approved scope and preview again. After two attempts that still do not fit, stop and ask the user. Presenting images is not approval: wait for the user's yes, unless they said you can approve it.
+
+### Wait efficiently
+
+After starting a preview or export, keep its operation ID and call `wait_for_operation` with `timeoutSeconds: 25`. It returns early when the operation finishes, or the latest state after the maximum wait. Prefer this to repeated `get_operation` calls.
+
+Await pending tool executions. In Codex, use `yield_time_ms: 35000` for the execution and any runner wait, or the longest window the client supports. If execution yields, resume that same execution; do not check every second or start another call while the previous one is pending. These are maximum windows, not fixed delays, and the runner setting is separate from the AppScreens API.
+
+If the returned operation is still queued or running, wait again on the same operation ID within a bounded period, for example about 60 seconds. Stop on `succeeded`, `failed` or `cancelled`. Give a brief progress update before waiting; when the bounded period expires, report the latest status and retain the ID for the next check. A wait expiring does not cancel the operation, mean it failed or justify starting another render. If an existing call is still pending, resume it on the next check.
 
 ### Check and export
 

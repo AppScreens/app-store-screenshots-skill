@@ -21,7 +21,7 @@ Follow the usual steps for a new set. For a saved project, choose the matching r
 
 1. **Scope.** Start from the app, link, captures, template or project provided. Confirm which project to edit or whether to start fresh. For a new set or a copy with a different release scope, inspect the app and run [Plan screenshot requirements](references/project-workflows.md#plan-screenshot-requirements). Ask one short question about material unknowns. Skip choices already answered or delegated.
 2. **Draft.** Use the plan’s exact sizes to shortlist templates and call `create_project` with `workflow: "guided-screenshots"`. Apply the settings patch at the saved revision before writing copy. Use the existing project if requested. Pick a compatible template when the user delegates the choice, or show a few previews when they want to choose. Start blank if requested or if no template fits. Plan page order from the real captures and show proposed [ASO Captions](references/screenshot-copy.md) when review would help. Use existing [marketing artwork](references/asset-import.md#marketing-artwork) first and resolve any important gaps before drafting.
-3. **Apply.** Use Device elements for real app UI, including frameless captures, and native Text for copy. Photos, logos and artwork use Image elements. Use `plan_device_screenshot_import` for bulk matching and resolve ambiguous assignments before writing.
+3. **Apply.** Use Device elements for real app UI, including frameless captures, and native Text for copy. Photos, logos and complex artwork use Image elements. Keep Shapes for simple layout geometry; do not reconstruct icons or illustrations from dozens of tiny layers. Follow the [marketing artwork](references/asset-import.md#marketing-artwork) choices instead. Use `plan_device_screenshot_import` for bulk matching and resolve ambiguous assignments before writing.
 4. **Preview.** Inspect the actual render and share the editor URL. Offer a [browser listing or chat preview](references/listing-preview.md) if the user did not choose. Verify the saved layers and look for missing captures before presenting the design as ready.
 5. **Deliver when requested.** Run `validate_export` for the exact pages, languages and sizes. Export the reviewed revision. [Store upload](references/store-lifecycle.md) requires separate approval of the exact listing, files and replace or append choice. Give the result first, then [offer one relevant next step](references/store-lifecycle.md#after-screenshot-delivery).
 
@@ -44,6 +44,8 @@ Read [asset import](references/asset-import.md#local-screenshots) when using fil
 Use `get_project.storePreviewUrl` for a listing in the browser. For images in chat, use `render_project_preview`, `wait_for_operation` and `get_preview_image`. Read [listing preview](references/listing-preview.md) for the browser steps, artwork inputs and helper.
 
 ## Always
+
+- For previews and exports, use `wait_for_operation` with `timeoutSeconds: 25`. In Codex, use `yield_time_ms: 35000` for execution and runner waits where supported. Await the same pending call rather than checking every second. Follow [Wait efficiently](references/screenshot-copy.md#wait-efficiently) for bounded waits and unfinished jobs.
 
 - Pass the current `baseRevision` for edits and use the returned revision next. On a conflict, reread and reconcile. Check the project or operation before retrying an uncertain write.
 - Ask before destructive changes, restoring a version, replacing a layout or changing a store. Keep store credentials in the AppScreens browser flow.

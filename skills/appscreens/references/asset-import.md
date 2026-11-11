@@ -14,7 +14,9 @@ Screenshots already in AppScreens are listed by `list_assets`.
 
 ## Marketing artwork
 
-Use the customer’s existing logos, product photos and brand artwork first. If a missing asset matters to the design, ask for it by name. If an illustration, background or accent is still missing, offer to generate original artwork when the client has image tools. Generate it if the customer requests or delegates that choice. Place the result in a replaceable Image element or the background image slot.
+Use the customer’s existing logos, product photos and brand artwork first. For missing icons, illustrations and decorative artwork, search `list_library_images` or use a suitable emoji in native Text when its appearance fits. If neither fits, ask whether the customer has the asset or wants original artwork generated with the client's image tools. Generate it if the customer requests or delegates that choice, as a separate asset at its intended crop and aspect ratio. A close reference match may need a supplied or generated asset rather than a visually different emoji. If neither is available, explain the missing artwork and agree on a simpler treatment.
+
+Use native Shapes for simple cards, circles, dividers and accents. Do not assemble complex icons, logos or illustrations from dozens or hundreds of tiny Shape layers, or rasterize that same approximation as a workaround. Place each artwork asset in one replaceable Image element or background image slot. Editable layout means the captions, devices, placements and simple shapes remain editable; it does not require decomposing every graphic. Use native Text decorations for laurels and caption badges.
 
 Use genuine logos and verified awards and ratings. Put real app captures in Device elements. Ask for a missing capture or use a clearly identified Device placeholder in the draft.
 

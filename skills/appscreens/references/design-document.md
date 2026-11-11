@@ -16,7 +16,7 @@ Edit only requested settings in the exported document. Preserve the version, sel
 
 For a change to one element, `apply_project_changes` `element.update` takes the same fields with the same rules, without sending the whole page: `{op: 'element.update', elementId, changes: {location: {x: .1}, title: {align: 'left'}}}`. Objects merge field by field; a colour or gradient, an array or any other value replaces. A field the export leaves out because the element doesn't set it (the editor's default applies, as on a newly added element) may be set; other fields the export leaves out are kept as they are.
 
-Page backgrounds, shape fill and stroke, image frame fill and border, and text decoration take a solid `{rgba}` colour or a two-colour `{gradient}`. Read project and page backgrounds with `get_project_backgrounds` and edit them with `apply_project_changes` `background.set`. One image covers the background across all output sizes and languages. Set its crop alignment with `position`. Use an uploaded asset or a `list_library_images` ID. Use `assign_project_images` for image layers and owned app captures for device screenshot slots.
+Page backgrounds, shape fill and stroke, image frame fill and border, and text decoration take a solid `{rgba}` colour or a two-colour `{gradient}`. Colours in settings, backgrounds and element edits also accept `#RGB`, `#RGBA`, `#RRGGBB`, `#RRGGBBAA`, `rgb(...)`, `rgba(...)` or `transparent`, including gradient endpoints. Numeric RGBA uses four numbers, not strings: RGB integers 0..255, alpha 0..1. Reads retain the canonical format. Read project and page backgrounds with `get_project_backgrounds` and edit them with `apply_project_changes` `background.set`. One image covers the background across all output sizes and languages. Set its crop alignment with `position`. Use an uploaded asset or a `list_library_images` ID. Use `assign_project_images` for image layers and owned app captures for device screenshot slots.
 
 Gradient stops must be ordered between 0 and 1. For a radial gradient, `angle` is the radius percentage, from 1 to 100; for a linear gradient it is degrees. A background image supports `rotation` of 0, 90, 180 or 270. To rotate the existing source, send `image: {rotation: 90}` without an asset ID. Existing library patterns expose colour, opacity, size, spacing and rotation; edit those fields without supplying a style to preserve the registered tile. Creating a new library tile is not supported through this command.
 
@@ -36,7 +36,25 @@ Use approved asset IDs, and font names already on the page or from `list_fonts`,
 
 The first draft preserves unrepresented native settings in the server baseline. Inspect its warnings: global styles, target/locale overrides, unsupported inline formats or the backgrounds from `get_project_backgrounds` may change the visible result. A read-only or unsupported field is not permission to inject it into the document or replace the entire scene. Source-language changes use the existing migration/settings tool, never this composition document.
 
+## Set captions and shared shadows
+
+Pass these operations to `apply_project_changes` with the saved `projectId`, current `baseRevision` and an existing Text element ID. `text.set` takes formatted content, not a plain string. Omitting `language` edits the source language; a blank source subtitle removes it and its translations. `clearFormatting: true` makes this explicit even when the old subtitle has mixed formatting. For other text changes, preserve formatting unless the user wants it replaced.
+
+```json
+[
+  {"op": "text.set", "elementId": "caption-element", "slot": "title", "value": {"ops": [{"insert": "Reach anyone\n"}]}},
+  {"op": "text.set", "elementId": "caption-element", "slot": "subtitle", "value": {"ops": [{"insert": "\n"}]}, "clearFormatting": true},
+  {"op": "element.update", "elementId": "caption-element", "changes": {"title": {"shadow": {"global": true}}}}
+]
+```
+
+Partial shadows keep saved colour, offsets and blur. If the shadow is absent, the editor's defaults supply those fields. `global: true` follows the project shadow; it does not change the project shadow itself.
+
 ## Build app UI with Device elements
+
+Check `get_design_contract`'s `limits.maxLayers` before adding independent layers. `addTo: "above"` or `"below"` stacks inside a referenced layer; it does not create another top-level layer. Prefer one artwork asset or a native decoration to many small decorative shapes.
+
+Use [marketing artwork](asset-import.md#marketing-artwork) for complex icons and illustrations: library assets, suitable emoji, or supplied/generated artwork. Keep simple geometry native. Do not turn a graphic into dozens of tiny Shapes to make it editable.
 
 When a user asks for a screenshot set or a remake, choose an editable layout and the native element types for them. Reuse a Device element from the template or add one with `apply_project_changes` using `{op: "element.add", screenshotId, type: "device", elementId}`. For UI with no bezel, set `changes: {frame: "none"}` on that Device with `element.update`. Use the saved revision, `plan_device_screenshot_import` and `assign_device_screenshots` to assign the clean captures to the right device and language. This keeps the frame and capture independently replaceable.
 
@@ -66,7 +84,7 @@ Use the editor's Text decoration for an award caption, rating wreath or similar 
 [
   {"op": "element.add", "screenshotId": "selected-page", "type": "text", "elementId": "award-badge", "addTo": "layer"},
   {"op": "text.set", "elementId": "award-badge", "slot": "title", "value": {"ops": [{"insert": "Award name\n"}]}},
-  {"op": "text.set", "elementId": "award-badge", "slot": "subtitle", "value": {"ops": [{"insert": "\n"}]}},
+  {"op": "text.set", "elementId": "award-badge", "slot": "subtitle", "value": {"ops": [{"insert": "\n"}]}, "clearFormatting": true},
   {"op": "element.update", "elementId": "award-badge", "changes": {"decoration": "laurelCompactTight", "title": {"align": "center"}}}
 ]
 ```
