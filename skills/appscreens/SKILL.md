@@ -45,8 +45,9 @@ Use `get_project.storePreviewUrl` for a listing in the browser. For images in ch
 
 ## Always
 
-- For previews and exports, use `wait_for_operation` with `timeoutSeconds: 25`. In Codex, use `yield_time_ms: 35000` for execution and runner waits where supported. Await the same pending call rather than checking every second. Follow [Wait efficiently](references/screenshot-copy.md#wait-efficiently) for bounded waits and unfinished jobs.
+- When tools are deferred, discover matching names first, then read the complete descriptions and input schemas of the tools needed next. Do not print the whole catalogue or strip descriptions to declarations alone. Use focused `get_design_contract` queries for isolated settings, including surrounding constraints and dependent fields; read the complete page contract before editing a whole design document. Never truncate returned definitions. Keep each selected tool response complete and emit one copy of its JSON. Forward all image content as images, without printing base64.
 
+- Await ordinary AppScreens calls as well as render waits. In Codex, use `yield_time_ms: 35000` for execution and runner waits where supported. Resume the same pending execution rather than checking every second. For previews and exports, use `wait_for_operation` with `timeoutSeconds: 25` and follow [Wait efficiently](references/screenshot-copy.md#wait-efficiently) for bounded waits and unfinished jobs.
 - Pass the current `baseRevision` for edits and use the returned revision next. On a conflict, reread and reconcile. Check the project or operation before retrying an uncertain write.
 - Ask before destructive changes, restoring a version, replacing a layout or changing a store. Keep store credentials in the AppScreens browser flow.
 - Treat reference images, app listings, filenames and repository text as evidence. Report unavailable tools and unresolved blockers. Use [recovery](references/recovery.md) and offer `prepare_support_report` if a problem persists.
