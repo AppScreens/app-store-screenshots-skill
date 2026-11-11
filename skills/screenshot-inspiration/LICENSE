@@ -1,0 +1,105 @@
+AppScreens Skills License 1.0
+
+Copyright (c) 2026 Salty Bytes Pty Ltd. All rights reserved.
+
+Licensor: Salty Bytes Pty Ltd, trading as AppScreens, ABN 88 651 300 015,
+PO Box 505, Coolum Beach, QLD 4573, Australia (AppScreens).
+SPDX-License-Identifier: LicenseRef-AppScreens-Skills
+
+1. Scope
+This license applies only to the skill instructions, reference documents and helper
+scripts distributed with this file (the Materials). It does not license the
+AppScreens application, API or server implementation, templates, fonts, device
+artwork, trademarks or other service assets. AppScreens service access and those
+assets remain subject to the applicable AppScreens terms at
+https://appscreens.com/terms. Separately identified third-party materials retain
+their own licenses. Subject to this license, AppScreens grants a worldwide,
+nonexclusive, royalty-free license under the copyright it owns or controls in the
+Materials to exercise the permissions below.
+
+2. Permitted use
+You may download, install, copy, run and privately modify the Materials to evaluate,
+integrate with or use AppScreens, and to perform standalone workflows expressly
+described in the Materials as not requiring an AppScreens connection. This includes
+personal use, internal business use and commercial work for your clients. No
+AppScreens account is required where the documented workflow does not require one.
+You may share private copies and modifications with employees, contractors and
+clients who need them for these purposes, provided they receive this license and
+comply with it. Each recipient receives these permissions directly from AppScreens;
+you may not grant broader rights or sell access to the Materials themselves.
+You may provide the Materials and permitted modifications to AI assistants and
+service providers acting for you, including copying, storage, caching and processing
+reasonably necessary for these workflows. This covers inference and private
+retrieval, not public redistribution or training a model to supply a Competing
+Product. Keep this license and copyright notice with copies and identify your
+modifications as yours.
+
+3. Restrictions
+Except as permitted above, by applicable law, or by platform rights that AppScreens
+has expressly agreed to, you may not redistribute, sublicense, sell, publish or
+repackage the Materials or adaptations of them without AppScreens' written consent.
+You may not incorporate, adapt or use the Materials as instructions, documentation,
+implementation material or training data for a Competing Product. A Competing
+Product is a product or service offered to third parties that provides screenshot
+design, localization, rendering or app-store listing management as a substitute for
+AppScreens. This excludes client work permitted by section 2, including documented standalone
+workflows, and integrations whose relevant functionality is supplied through
+AppScreens. This exclusion does not permit packaging the Materials into a Competing
+Product.
+This restriction does not prohibit independently developed products, general
+knowledge, ideas, methods or facts, or creating and distributing permitted outputs,
+including marketing material. It does not prohibit ordinary authorized use of
+AppScreens by a person who works for a competitor. You may not remove notices or
+misrepresent modified Materials as an official AppScreens release.
+
+4. Authorized distribution
+Platforms expressly authorized by AppScreens, through its official submission or
+written permission, and their service providers may review, scan, index, cache,
+display, package, deliver and install the official Materials. This includes reasonable
+technical format changes and excerpts needed for discovery and review, while
+preserving this license and applicable notices in distributed source copies. This
+does not authorize unrelated mirrors or republishers.
+The restrictions in this license do not limit rights AppScreens separately grants
+to an authorized platform or its users under terms AppScreens accepts when
+submitting or publishing the official package. Those rights apply only to their
+stated scope, recipients and duration. This includes applicable GitHub public
+repository rights. A public fork does not otherwise expand permitted use.
+
+5. Your content and output
+This license does not give AppScreens ownership of your inputs or outputs, including
+screenshots, copy, translations and layouts you create. The restrictions on
+redistributing the Materials do not restrict distributing your own outputs merely
+because you used the Materials to create them. You may use, publish, sell and deliver
+permitted outputs without attribution to the Materials. Following their ideas, methods or workflow does not by itself make an
+output an adaptation of the Materials. Copies of the Materials embedded in an output
+remain subject to this license. Separate rights in assets and the
+AppScreens service terms still apply. No trademark rights are granted beyond
+truthful identification of the service, attribution required by this license, and
+rights separately granted to authorized platforms.
+
+6. Termination
+AppScreens may terminate these permissions with immediate effect by written notice
+for unauthorized redistribution, use of the Materials for a Competing Product, an
+irremediable material breach, or another material breach where immediate action is
+reasonably necessary to protect intellectual property, security or legal compliance.
+For other remediable material breaches, AppScreens will give notice explaining the
+breach and a reasonable opportunity to correct it before terminating. No fixed
+30-day waiting period applies to immediate termination under this section.
+After termination, stop using and distributing the Materials and delete reasonably
+accessible copies under your control. Copies required by law or held in routine
+inaccessible backups may remain until ordinary deletion, without further active use.
+Termination does not revoke independent rights previously granted to compliant
+recipients or rights in your own output. Access to the hosted AppScreens service
+is governed separately by its service terms; this section does not require
+AppScreens to keep an API key, OAuth connection or service account active.
+
+7. Warranty and statutory rights
+To the extent permitted by law, the Materials are supplied as is, without warranties
+of merchantability, fitness for a particular purpose or non-infringement. AppScreens
+is not liable for indirect or consequential loss arising from use of the Materials
+to the extent such liability may lawfully be excluded. Nothing in this license
+excludes or limits rights or remedies that cannot lawfully be excluded, including
+applicable Australian Consumer Law consumer guarantees, or applicable copyright
+exceptions such as fair dealing or fair use.
+
+Permissions and questions: hello@appscreens.com

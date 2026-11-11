@@ -1,0 +1,6 @@
+{
+  "name": "appscreens",
+  "owner": {"name": "AppScreens"},
+  "metadata": {"description": "AppScreens skills for App Store and Google Play screenshots."},
+  "plugins": [{"name": "appscreens", "source": "./"}]
+}
