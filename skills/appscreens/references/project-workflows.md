@@ -25,7 +25,7 @@ Emoji appearance automatically follows each output target: Apple for App Store o
 Only set `theme.emojiProvider` to `apple` or `google` when the user explicitly wants one appearance across every target;
 set it to `null` to return to automatic selection.
 
-`PROJECT_LIMIT_REACHED` means the account has no room for another project. Let the user decide what to do; never delete, archive or upgrade on your own. Archived projects still count.
+`PROJECT_LIMIT_REACHED` means the account has no room for another project. Follow [plan-limit recovery](recovery.md#plan-and-usage-limits): offer the existing upgrade link before suggesting reuse or deletion, preserve the requested set, and let the user choose. Never delete, overwrite, archive or purchase on your own. Archived projects still count.
 
 Template creation clears the template's about text, tags and app link unless you pass an app. `duplicate_project` keeps them. Both create fresh page and element IDs, so read the new project instead of reusing IDs from the source.
 

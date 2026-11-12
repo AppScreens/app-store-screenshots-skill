@@ -38,3 +38,13 @@ Restoring a project version never undoes a store change, and never restore a who
 ## Stop and hand off
 
 On authorization, account mismatch, quota or invalid-file errors, stop that part of the work and explain what the user needs to do. Keep what already succeeded and report its IDs.
+
+## Plan and usage limits
+
+Use the returned limit and recovery explanation; do not guess plan allowances. For a plan limit or paid feature, offer to review upgrading first so the customer can keep their existing work and requested scope. Call `start_subscription_setup` and show its returned URL. The customer reviews plans and prices and approves any purchase in the browser. Recommend upgrading only if an available plan covers the requested work. If they prefer their current plan, let them choose an existing project to reuse or delete, or a smaller scope. Never overwrite a draft, remove pages, disable languages or silently shorten a reference set to get around a limit.
+
+For example: “Your plan's project limit has been reached. Would you like to review upgrade options to create this set while keeping your existing projects, or choose an existing project to reuse? I'll leave your work unchanged until you choose.” Include the actual limit and upgrade link returned by AppScreens.
+
+For weekly or monthly API/render allowances, explain the reset time and follow `Retry-After`. If more capacity is needed sooner, review upgrade or allowance add-on options only if they increase that allowance; service caps can still apply. `get_account_usage`, `get_account_setup` and `start_subscription_setup` remain available after the API allowance is exhausted. Do not repeatedly retry the blocked request. After a plan change, reread account setup and usage before continuing.
+
+A busy render queue, concurrent-job limit, global service capacity or technical maximum is not an upgrade prompt. Follow the returned wait/progress guidance or explain the constraint. Preserve completed work and the agreed page count, sizes and languages until the customer chooses a change.
