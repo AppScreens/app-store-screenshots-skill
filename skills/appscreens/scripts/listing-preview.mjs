@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 // Shows screenshots in the free AppScreens App Store and Google Play listing preview without uploading them.
 // `link` prints a preview URL for https images. `open` writes a local launcher page that sends local files to the preview.
 import {spawn} from 'node:child_process';
@@ -83,12 +82,12 @@ export function previewInput(options) {
 
 /** A link with the listing in its #preview= fragment, which browsers never send to the server. */
 export function previewLink({origin, input, images = {}, screenshots = []}) {
-    check(screenshots.length <= LIMITS.screenshots, `Use at most ${LIMITS.screenshots} screenshots.`);
-    const set = Object.fromEntries(Object.entries(images).filter(([, url]) => url !== undefined));
-    for (const url of [...Object.values(set), ...screenshots]) { check(httpsUrl(url), `Not an https image URL: ${url}`); }
-    const preview = {...input, ...set, ...(screenshots.length ? {screenshots} : {})};
+    check(screenshots.length <= LIMITS.screenshots, 'Use at most ' + LIMITS.screenshots + ' screenshots.');
+    const given = Object.fromEntries(Object.entries(images).filter(([, url]) => url !== undefined));
+    for (const url of [...Object.values(given), ...screenshots]) { check(httpsUrl(url), `Not an https image URL: ${url}`); }
+    const preview = {...input, ...given, ...(screenshots.length ? {screenshots} : {})};
     const encoded = Buffer.from(JSON.stringify(preview)).toString('base64url');
-    return `${previewOrigin(origin)}${PREVIEW_PATH}#preview=${encoded}`;
+    return previewOrigin(origin) + PREVIEW_PATH + '#preview=' + encoded;
 }
 
 async function localImage(root, relative) {
@@ -200,7 +199,7 @@ export async function main(args) {
     const files = options.file || [];
     const imageFiles = Object.entries(IMAGE_FLAGS).filter(([, [flag]]) => options[flag]);
     check(files.length || imageFiles.length, 'Provide --file for each screenshot, in listing order.');
-    check(files.length <= LIMITS.screenshots, `Use at most ${LIMITS.screenshots} screenshots.`);
+    check(files.length <= LIMITS.screenshots, 'Use at most ' + LIMITS.screenshots + ' screenshots.');
     const root = await realpath(path.resolve(options.root));
     const screenshots = [];
     for (const file of files) { screenshots.push(await localImage(root, file)); }

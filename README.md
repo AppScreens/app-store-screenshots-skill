@@ -25,7 +25,7 @@ Store screenshots look like an image task, but shipping them is a pipeline: idea
 ## Skills in this pack
 
 <!-- skills:start -->
-Pack version 0.8.13.
+Pack version 0.8.14.
 
 | Skill | What it does | AppScreens connection | Try |
 |---|---|---|---|
@@ -72,6 +72,13 @@ For a later release:
 For a fuller first prompt based on a listing or template you like, use the [prompt builder](https://appscreens.com/developers/connect#starters).
 
 Never paste API keys or store credentials into chat. Save any pending editor changes before the agent edits. The same project can stay open while agent saves appear in the editor. Preserve returned IDs and revision checks.
+
+## Data handling
+
+- The plugin connects to the AppScreens MCP server at `https://api.appscreens.com/mcp` and signs in with OAuth.
+- The local screenshot helper uploads only the screenshots you choose, straight to AppScreens' Google Cloud Storage bucket (`storage.googleapis.com`) through a short-lived signed upload, or through `api.appscreens.com` if that fails. It sends no credentials.
+- The listing preview helper opens `https://appscreens.com` in your browser. The listing travels in the link's `#preview=` part, which browsers never send to the server, and local images are passed to the page in the browser, not uploaded.
+- Projects, uploaded images and version history stay in your AppScreens account until you delete them. See the [privacy policy](https://appscreens.com/privacy).
 
 ## Files
 

@@ -12,7 +12,7 @@ The free [App Store screenshot preview](https://appscreens.com/app-store-screens
 
   ```text
   node <skill-directory>/scripts/listing-preview.mjs open --root <repository> --file <first.png> --file <second.png> \
-    --icon <icon.png> --platform apple --name "<app name>" --subtitle "<subtitle>" \
+    --icon <icon-image.png> --platform apple --name "<app name>" --subtitle "<subtitle>" \
     --universal-artwork <universal.png> --universal-placement both
   ```
 
