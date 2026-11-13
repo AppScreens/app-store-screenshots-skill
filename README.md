@@ -25,7 +25,7 @@ Store screenshots look like an image task, but shipping them is a pipeline: idea
 ## Skills in this pack
 
 <!-- skills:start -->
-Pack version 0.8.11.
+Pack version 0.8.12.
 
 | Skill | What it does | AppScreens connection | Try |
 |---|---|---|---|
@@ -57,7 +57,7 @@ The client model writes copy. Translations come from the client model or AppScre
 
 1. Add the AppScreens MCP server, `https://api.appscreens.com/mcp`, to your client. The client opens AppScreens in the browser to sign in with OAuth and approve access. Account > MCP Access shows the exact steps per client.
 2. Install the pack. In Claude Code: `/plugin install appscreens --marketplace AppScreens/app-store-screenshots-skill`, or `/plugin marketplace add AppScreens/app-store-screenshots-skill` and then `/plugin install appscreens@appscreens`. Other clients: install any skill folder under `skills/` using your client's supported skill mechanism. The plugin's connection (`.mcp.json`) uses the same OAuth sign-in. Keep `references/` and `scripts/` alongside a manual skill installation.
-   - For REST, CI, scripts and compatible MCP clients without OAuth, create a scoped key in Account > API Access, keep it in the `APPSCREENS_API_KEY` environment variable and send `Authorization: Bearer ${APPSCREENS_API_KEY}`. Never commit it.
+   - For scripts and CI, see the [REST API connection guide](https://appscreens.com/developers/connect#rest-connection).
 3. Node.js 22 or newer is required for the local screenshot helper. It uses built-in modules and needs no dependency installation.
 4. Begin with a read-only connection check, then use a disposable project for the first write workflow.
 
@@ -68,6 +68,8 @@ Example request:
 For a later release:
 
 > Update my existing AppScreens project for this feature release. Keep the design, replace the changed captures and captions, and show me what changed before export.
+
+For a fuller first prompt based on a listing or template you like, use the [prompt builder](https://appscreens.com/developers/connect#starters).
 
 Never paste API keys or store credentials into chat. Save any pending editor changes before the agent edits. The same project can stay open while agent saves appear in the editor. Preserve returned IDs and revision checks.
 
@@ -81,6 +83,11 @@ Never paste API keys or store credentials into chat. Save any pending editor cha
 - [Claude MCP connection](.mcp.json)
 - [Claude Code marketplace](.claude-plugin/marketplace.json)
 - [MCP registry manifest](server.json) (OAuth discovered from the endpoint; no required headers)
+
+## Help
+
+- [Tips and troubleshooting](https://appscreens.com/developers/help): tips for better results, allowance checks, common errors and how to report a slow or costly run.
+- [AppScreens MCP overview and FAQ](https://appscreens.com/app-store-screenshots-mcp): what it is, what it can do and which AI tools are supported.
 
 ## License
 

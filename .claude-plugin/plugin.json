@@ -1,12 +1,13 @@
 {
   "name": "appscreens",
-  "version": "0.8.11",
+  "version": "0.8.12",
   "description": "Create editable App Store and Google Play screenshots from real app captures: templates, benefit-led copy, visual iteration, localization, validated exports and approved store uploads. Includes inspiration, screenshot audits, A/B test planning and release preparation.",
   "author": {
     "name": "AppScreens",
     "url": "https://appscreens.com"
   },
   "homepage": "https://appscreens.com/developers/connect",
+  "privacyPolicyUrl": "https://appscreens.com/privacy",
   "repository": "https://github.com/AppScreens/app-store-screenshots-skill",
   "license": "LicenseRef-AppScreens-Skills",
   "keywords": [
