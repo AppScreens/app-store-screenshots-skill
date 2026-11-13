@@ -23,20 +23,9 @@ Use genuine logos and verified awards and ratings. Put real app captures in Devi
 ## Local screenshots
 
 1. Stay inside the repository the user put in scope. Do not scan their home directory or follow links outside it.
-2. Read the accepted MIME types and `sizeBytes.maximum` from the `create_asset_upload` input schema, then run the bundled helper (Node 22 or newer) with those values:
-
-   ```text
-   node <skill-directory>/scripts/local-screenshots.mjs discover --root <repository> --mime-types <comma-separated-schema-values> --max-bytes <schema-maximum>
-   ```
-
-   It looks in Fastlane, Expo, Flutter, screenshots and asset folders and skips dependencies and build output. If it misses a folder you know about, look there with your own file tools.
+2. Look for captures with your own file tools in Fastlane, Expo, Flutter, `screenshots` and asset folders. Skip dependencies and build output. Keep only the image types and file sizes the `create_asset_upload` schema accepts.
 3. Show the candidates and ask: **Which screenshots show the key app journey, and in what order?** Confirm the language and devices too. If the user already chose files, use those. Upload only the selected screenshots, never source code, credentials or unrelated assets.
-4. Start with one file. Call `create_asset_upload` with its name, MIME type, byte count and `assetType: screenshot`. Pass the returned JSON to the helper on stdin, then call `complete_asset_upload` with the `uploadId`. Use the completed asset's `id` from then on. After the first file completes, continue with the remaining selected files. If the shell blocks outbound network access, request access for the upload and retry the same intent while it is valid.
-
-   ```text
-   node <skill-directory>/scripts/local-screenshots.mjs upload --root <repository> --file <selected-relative-path>
-   ```
-
-5. Do not resize, convert or replace files without asking. If the API rejects a file, explain why and offer to make a converted copy.
+4. Start with one file. Call `create_asset_upload` with its name, MIME type, byte count and `assetType: screenshot`. POST every returned `upload.fields` value unchanged and the file last as multipart form data to `upload.url`, for example `curl -sS --fail -F key=<value> … -F file=@<path> <url>`. If that host is unreachable, POST the same form to `upload.relayUrl`. Then call `complete_asset_upload` with the `uploadId` and use the completed asset's `id` from then on. After the first file completes, continue with the remaining selected files. If the shell blocks outbound network access, request access for the upload and retry the same intent while it is valid.
+5. AppScreens checks each file when you complete its upload. If it refuses one, the error says why: fix the request or the file and try again. Do not resize, convert or replace files without asking. If a file needs converting, offer to make a converted copy.
 
 Importing does not render, export or upload to a store. Finish with the project ID and how many screenshots were assigned, plus anything left unassigned.

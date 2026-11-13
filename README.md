@@ -25,7 +25,7 @@ Store screenshots look like an image task, but shipping them is a pipeline: idea
 ## Skills in this pack
 
 <!-- skills:start -->
-Pack version 0.8.15.
+Pack version 0.8.16.
 
 | Skill | What it does | AppScreens connection | Try |
 |---|---|---|---|
@@ -56,10 +56,9 @@ The client model writes copy. Translations come from the client model or AppScre
 ## Use the skill
 
 1. Add the AppScreens MCP server, `https://api.appscreens.com/mcp`, to your client. The client opens AppScreens in the browser to sign in with OAuth and approve access. Account > MCP Access shows the exact steps per client.
-2. Install the pack. In Claude Code: `/plugin install appscreens --marketplace AppScreens/app-store-screenshots-skill`, or `/plugin marketplace add AppScreens/app-store-screenshots-skill` and then `/plugin install appscreens@appscreens`. Other clients: install any skill folder under `skills/` using your client's supported skill mechanism. The plugin's connection (`.mcp.json`) uses the same OAuth sign-in. Keep `references/` and `scripts/` alongside a manual skill installation.
+2. Install the pack. In Claude Code: `/plugin install appscreens --marketplace AppScreens/app-store-screenshots-skill`, or `/plugin marketplace add AppScreens/app-store-screenshots-skill` and then `/plugin install appscreens@appscreens`. Other clients: install any skill folder under `skills/` using your client's supported skill mechanism. The plugin's connection (`.mcp.json`) uses the same OAuth sign-in. Keep `references/` alongside a manual skill installation.
    - For scripts and CI, see the [REST API connection guide](https://appscreens.com/developers/connect#rest-connection).
-3. Node.js 22 or newer is required for the local screenshot helper. It uses built-in modules and needs no dependency installation.
-4. Begin with a read-only connection check, then use a disposable project for the first write workflow.
+3. Begin with a read-only connection check, then use a disposable project for the first write workflow.
 
 Example request:
 
@@ -76,8 +75,8 @@ Never paste API keys or store credentials into chat. Save any pending editor cha
 ## Data handling
 
 - The plugin connects to the AppScreens MCP server at `https://api.appscreens.com/mcp` and signs in with OAuth.
-- The local screenshot helper uploads only the screenshots you choose, straight to AppScreens' Google Cloud Storage bucket (`storage.googleapis.com`) through a short-lived signed upload, or through `api.appscreens.com` if that fails. It sends no credentials.
-- The listing preview helper opens `https://appscreens.com` in your browser. The listing travels in the link's `#preview=` part, which browsers never send to the server, and local images are passed to the page in the browser, not uploaded.
+- Only the screenshots you choose are uploaded, straight to AppScreens' Google Cloud Storage bucket (`storage.googleapis.com`) through a short-lived signed upload, or through `api.appscreens.com` if that fails. No credentials are sent with the files.
+- Listing previews open `https://appscreens.com` in your browser. A preview link carries the listing in its `#preview=` part, which browsers never send to the server, and files you add on the page stay in your browser.
 - Projects, uploaded images and version history stay in your AppScreens account until you delete them. See the [privacy policy](https://appscreens.com/privacy).
 
 ## Files
@@ -86,7 +85,6 @@ Never paste API keys or store credentials into chat. Save any pending editor cha
 - [Guided project workflows](skills/appscreens/references/project-workflows.md)
 - [Screenshot copy and visual review](skills/appscreens/references/screenshot-copy.md)
 - [Store metadata and draft releases](skills/appscreens/references/store-metadata.md)
-- [Local screenshot discovery and upload helper](skills/appscreens/scripts/local-screenshots.mjs)
 - [Claude MCP connection](.mcp.json)
 - [Claude Code marketplace](.claude-plugin/marketplace.json)
 - [MCP registry manifest](server.json) (OAuth discovered from the endpoint; no required headers)

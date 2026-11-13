@@ -16,13 +16,7 @@ To make a REST or CI retry safe without reading first, send the same `Idempotenc
 
 ## Long imports
 
-For a large import you may need to resume later. Record progress with the helper's `record` command, which keeps a local, non-secret file at `.appscreens/imports/<session>.json`:
-
-```text
-node <skill-directory>/scripts/local-screenshots.mjs record --root <repository> --session <session-name>
-```
-
-It reads JSON on stdin: `version: 1`, optional `accountId`, `projectId` and `baseRevision`, `files` in the chosen order (`{path, sizeBytes, mimeType}` plus `uploadId`, `assetId` and `sha256` as you get them) and optional reviewed `assignments`. On resume, check each saved asset with `get_asset` and read the project again. When resuming a known file, pass `--sha256 <saved-checksum>` to `upload` so a changed file fails instead of uploading different bytes. Never store signed URLs, form fields or credentials in it.
+For a large import you may need to resume later. Keep a small, non-secret progress file at `.appscreens/imports/<session>.json` with the project ID, the chosen files in order (`path`, `sizeBytes`, `mimeType`, plus `uploadId`, `assetId` and `sha256` as you get them) and any reviewed assignments. On resume, check each saved asset with `get_asset` and read the project again. Before uploading a known file again, compare its SHA-256 with the saved one so a changed file is not uploaded by mistake. Never store signed URLs, form fields or credentials in it.
 
 ## Conflicts
 

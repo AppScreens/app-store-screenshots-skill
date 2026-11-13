@@ -15,7 +15,7 @@ Use `createProject.targetIds` to filter templates. Merge `createProject` into th
 ## Create App Store screenshots for this repository
 
 1. Follow the [project choice](../SKILL.md#the-usual-steps) before inspecting any matching draft. Read the README, main screens and captures. Use the supplied project name, colours and device choices. Ask only for missing direction that affects the design or release.
-2. Find screenshots with the helper. Confirm the journey or order if it is unclear, and upload only the selected files.
+2. Find the screenshots in the repository, as in [local screenshots](asset-import.md#local-screenshots). Confirm the journey or order if it is unclear, and upload only the selected files.
 3. Show **ASO Captions** as numbered titles and optional subtitles with their matching captures. Account for every supplied capture when proposing the page count, including any files you would leave out.
 4. Use the project the user named or start a new one with the [guided setup](../SKILL.md#the-usual-steps). When the layout is open, recommend a template with suitable page count, orientation and text space. Use `create_project` with `mode: template` and `clearTemplateScreenshots: true` for a full set. To mix layouts, inspect template pages with `get_template`, then use `add_project_screenshot` with `mode: template`, `templateId` and `templateScreenshotId`. Pick compatible pages and match their type, spacing and device treatment. Build custom pages where needed.
 5. Assign the screenshots and apply the approved copy. Do not turn unassigned files into extra pages or put screenshots into decorative images.

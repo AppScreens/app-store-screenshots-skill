@@ -37,11 +37,11 @@ Verify that you can see the references before designing. Ask for missing referen
 
 ## Local screenshots
 
-Read [asset import](references/asset-import.md#local-screenshots) when using files from a repository. It covers the discovery and signed upload helper. For attachments or public URLs, follow [chat uploads](references/asset-import.md#screenshots-attached-in-a-chat).
+Read [asset import](references/asset-import.md#local-screenshots) when using files from a repository. It covers finding the files and the signed upload. For attachments or public URLs, follow [chat uploads](references/asset-import.md#screenshots-attached-in-a-chat).
 
 ## Show a store listing preview
 
-Use `get_project.storePreviewUrl` for a listing in the browser. For images in chat, use `render_project_preview`, `wait_for_operation` and `get_preview_image`. Read [listing preview](references/listing-preview.md) for the browser steps, artwork inputs and helper.
+Use `get_project.storePreviewUrl` for a listing in the browser. For images in chat, use `render_project_preview`, `wait_for_operation` and `get_preview_image`. Read [listing preview](references/listing-preview.md) for the browser steps, artwork inputs and preview links.
 
 ## Always
 

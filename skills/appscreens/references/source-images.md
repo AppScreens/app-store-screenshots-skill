@@ -14,13 +14,7 @@ The browser's Upload Screenshots and Upload Images dialogs offer the same saved-
 
 ## Plan before uploading
 
-After the user edits or regenerates selected files, compute their byte counts and hashes. The bundled helper can fingerprint one selected file without requesting an upload:
-
-```text
-node <skill-directory>/scripts/local-screenshots.mjs fingerprint --root <working-folder> --file <manifest-relative-path> --max-bytes <live-upload-schema-maximum>
-```
-
-Send the returned `{path, sha256, sizeBytes}` records and the original manifest to `plan_project_source_image_import`. Omit missing files; never substitute an empty file or a null assignment. This planner uses the same change rules as the browser importer. Do not recreate assignment, format, size, language or conflict rules in a client script.
+After the user edits or regenerates selected files, compute each one's byte count and SHA-256 with your own tools, for example `wc -c` and `shasum -a 256`. Send `{path, sha256, sizeBytes}` records and the original manifest to `plan_project_source_image_import`. Omit missing files; never substitute an empty file or a null assignment. This planner uses the same change rules as the browser importer. Do not recreate assignment, format, size, language or conflict rules in a client script.
 
 Review the plan's rows and summary:
 
@@ -33,7 +27,7 @@ Use a bounded selection if the live response reports size or count limits. The m
 
 ## Upload and save the selected changes
 
-Upload only reviewed changed files using the existing `create_asset_upload`, constrained direct upload and `complete_asset_upload` sequence from SKILL.md. Pass the planned SHA-256 to the local upload helper so a file changed after review fails instead of uploading different bytes. Keep the completed asset IDs. An existing asset is never overwritten in Storage; a replacement is a new asset assigned to the existing slot. Identical selected bytes may reuse one completed owned asset within the same import and compatible asset kind.
+Upload only reviewed changed files with the `create_asset_upload`, form upload and `complete_asset_upload` steps in [asset import](asset-import.md#local-screenshots). Check each file's SHA-256 against the plan just before uploading, so a file changed after review is not uploaded. Keep the completed asset IDs. An existing asset is never overwritten in Storage; a replacement is a new asset assigned to the existing slot. Identical selected bytes may reuse one completed owned asset within the same import and compatible asset kind.
 
 For device-frame sources use `assign_device_screenshots`; for image elements use `assign_project_images`. Map each selected row's element, language and target to its newly completed asset ID, with `sourceField: row.entry.field` to preserve base, explicit translation or legacy-image provenance. Re-plan after any concurrent write or language change. Apply the reviewed assignments once with the current revision; if the two asset kinds need separate calls, use the revision returned by the first. Disabled stored locales are preserved by export; enable a locale deliberately through the existing settings workflow before attempting a write that requires it.
 
