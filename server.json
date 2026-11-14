@@ -9,6 +9,13 @@
     "source": "github"
   },
   "version": "0.1.0",
+  "icons": [
+    {
+      "src": "https://appscreens.com/android-chrome-512x512.png",
+      "mimeType": "image/png",
+      "sizes": ["512x512"]
+    }
+  ],
   "remotes": [
     {
       "type": "streamable-http",
