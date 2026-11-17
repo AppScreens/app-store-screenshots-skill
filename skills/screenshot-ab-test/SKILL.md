@@ -41,8 +41,8 @@ With AppScreens connected, check `get_account_capabilities` first.
 
 This needs store deployment access on the connection.
 
-1. Call `list_store_listings`. If an existing treatment or custom product page fits, use it.
-2. Otherwise call `preview_store_listing_creation`: `experiment` with a name, treatments and traffic share, or `custom` with a name. Show the preview and get a yes, then call `create_store_listing` with its `previewId`. If Apple already has a test in preparation, offer its treatments instead of a second test.
+1. Call `list_store_listings`. If an existing treatment or custom product page fits, use it. When `complete: false`, show the returned `warnings`: missing destinations may be inaccessible, so do not claim none exist or infer that creating another is safe.
+2. If the user wants a new test or page, call `preview_store_listing_creation`: `experiment` with a name, treatments and traffic share, or `custom` with a name. The preview must complete its duplicate and permission checks. Show the successful preview and get a yes, then call `create_store_listing` with its `previewId`. If Apple already has a test in preparation, offer its treatments instead of a second test. Do not bypass a permission failure in creation or upload checks.
 3. Call `preview_store_screenshot_deployment` with the export and the treatment or page as `listing`. Get a yes, call `deploy_store_screenshots`, then poll `get_deployment`.
 4. Hand off: the user submits the test or page for review in App Store Connect and starts the test once it's approved. Nothing goes live before that.
 

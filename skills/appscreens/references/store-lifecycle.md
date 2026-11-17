@@ -44,11 +44,13 @@ Use opaque PNG for the artwork. For download, export the selected artwork page i
 
 To upload to a product page optimization treatment or a custom product page instead of the main listing, call `list_store_listings` for the app and let the user pick one. Pass it as `listing` (`{type, id}`) to both calls and name it when you ask. The rest is the same: confirm, upload, poll. Apple runs the test and reports the results.
 
-If nothing fits, create one in AppScreens rather than on the App Store Connect website:
+If the result has `complete: false`, show its `warnings` and explain which optional destinations could not be read. Returned destinations remain candidates for preview, but missing pages or treatments are not evidence that none exist. An incomplete list does not establish that creating another page or test is safe. Creation previews still require duplicate checks, and upload previews still require access to the selected destination; never bypass a permission failure.
+
+If the user wants a new page or test, use AppScreens and let the creation preview check whether it can be created:
 
 1. Call `preview_store_listing_creation` with the app, `type` (`custom` for a custom product page, `experiment` for a test) and a `name`. A test also takes `treatmentsCount` (1 to 3, default 2) and `trafficProportion`, the percent of visitors shown a treatment (default 50). Nothing is created.
 2. Tell the user what will be created, and name any existing pages or treatments in the preview's `existing` that they could use instead. A refusal says why: a page name already in use, or a test already being prepared (Apple allows one at a time, so offer its treatments).
-3. After they say yes, call `create_store_listing` with the `previewId` and an `idempotencyKey`. It returns the new page or treatments (Treatment A, B, C); upload to one as `listing`. If the result is uncertain, read `list_store_listings` before another preview; never create twice.
+3. After they say yes, call `create_store_listing` with the `previewId` and an `idempotencyKey`. It returns the new page or treatments (Treatment A, B, C); upload to one as `listing`. If the result is uncertain, read `list_store_listings` before another preview; an incomplete result cannot establish that creation failed. Resolve the original outcome before creating again; never create twice.
 
 A new page or test starts in Prepare for Submission. AppScreens does not submit it for review or start the test: tell the user to do that in App Store Connect after the upload.
 
