@@ -52,7 +52,7 @@ Partial shadows keep saved colour, offsets and blur. If the shadow is absent, th
 
 ## Build app UI with Device elements
 
-Check `get_design_contract`'s `limits.maxLayers` before adding independent layers. `addTo: "above"` or `"below"` stacks inside a referenced layer; it does not create another top-level layer. Prefer one artwork asset or a native decoration to many small decorative shapes.
+Check `get_design_contract`'s `limits.maxLayers` before adding independent layers. `addTo: "above"` or `"below"` stacks inside a referenced layer; it does not create another top-level layer. Prefer one artwork asset per coherent graphic or a native decoration to many small decorative shapes. Subjects that need independent placement, such as two portraits, stay in separate Image elements with separate assets.
 
 Use [marketing artwork](asset-import.md#marketing-artwork) for complex icons and illustrations: library assets, suitable emoji, or supplied/generated artwork. Keep simple geometry native. Do not turn a graphic into dozens of tiny Shapes to make it editable.
 

@@ -18,6 +18,8 @@ Use the customer’s existing logos, product photos and brand artwork first. For
 
 Use native Shapes for simple cards, circles, dividers and accents. Do not assemble complex icons, logos or illustrations from dozens or hundreds of tiny Shape layers, or rasterize that same approximation as a workaround. Place each artwork asset in one replaceable Image element or background image slot. Editable layout means the captions, devices, placements and simple shapes remain editable; it does not require decomposing every graphic. Use native Text decorations for laurels and caption badges.
 
+Keep subjects that need independent placement, sizing, rotation or replacement as separate assets in separate Image elements, such as two portrait photos. Use supported native clipping, rounding, borders and shadows instead of baking those treatments and their positions into one image. Keep a coherent illustration, scene or panoramic background as one asset; do not split its internal details into many layers.
+
 Use genuine logos and verified awards and ratings. Put real app captures in Device elements. Ask for a missing capture or use a clearly identified Device placeholder in the draft.
 
 ## Local screenshots

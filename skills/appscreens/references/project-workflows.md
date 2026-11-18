@@ -19,13 +19,13 @@ Use `createProject.targetIds` to filter templates. Merge `createProject` into th
 3. Show **ASO Captions** as numbered titles and optional subtitles with their matching captures. Account for every supplied capture when proposing the page count, including any files you would leave out.
 4. Use the project the user named or start a new one with the [guided setup](../SKILL.md#the-usual-steps). When the layout is open, recommend a template with suitable page count, orientation and text space. Use `create_project` with `mode: template` and `clearTemplateScreenshots: true` for a full set. To mix layouts, inspect template pages with `get_template`, then use `add_project_screenshot` with `mode: template`, `templateId` and `templateScreenshotId`. Pick compatible pages and match their type, spacing and device treatment. Build custom pages where needed. A set can mix portrait and landscape pages: pass `orientation` to `add_project_screenshot`, or change one page with `screenshot.set_orientation` in `apply_project_changes`. Element positions stay as they were, so render and check a page after changing its orientation. Continue on Screen only joins pages of the same orientation.
 5. Assign the screenshots and apply the approved copy. Do not turn unassigned files into extra pages or put screenshots into decorative images.
-6. Show the preview in the chat without asking for a format choice, following the [preview routing](listing-preview.md): the interactive gallery or store listing where available, otherwise the images. When delivery is requested, [check the exact selection and export the approved revision](screenshot-copy.md#check-and-export).
+6. Check the renders, then share the editor link and ask how the user wants to see the set in chat, following the [preview routing](listing-preview.md). Show it in the form they choose. When delivery is requested, [check the exact selection and export the approved revision](screenshot-copy.md#check-and-export).
 
 Emoji appearance automatically follows each output target: Apple for App Store outputs and Google for Google Play.
 Only set `theme.emojiProvider` to `apple` or `google` when the user explicitly wants one appearance across every target;
 set it to `null` to return to automatic selection.
 
-`PROJECT_LIMIT_REACHED` means the account has no room for another project. Follow [plan-limit recovery](recovery.md#plan-and-usage-limits): offer the existing upgrade link before suggesting reuse or deletion, preserve the requested set, and let the user choose. Never delete, overwrite, archive or purchase on your own. Archived projects still count.
+`PROJECT_LIMIT_REACHED` means the account has no room for another project. Follow [plan-limit recovery](recovery.md#plan-and-usage-limits): explain the limit, preserve the requested set, and let the user choose. Never delete, overwrite, archive or purchase on your own. Archived projects still count.
 
 Template creation clears the template's about text, tags and app link unless you pass an app. `duplicate_project` keeps them. Both create fresh page and element IDs, so read the new project instead of reusing IDs from the source.
 

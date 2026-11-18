@@ -7,7 +7,7 @@ Store tools can be turned off separately from editing and exports. If they are m
 ## Account, plan and app
 
 1. Without an account or connection, send the user to sign in to AppScreens in the browser. Never collect passwords, API keys or tokens.
-2. Read `get_account_setup`, `get_account_capabilities` and `get_account_usage`. If a plan is needed, show the browser link from `start_subscription_setup`; the customer reviews and buys it there. Never buy for them.
+2. Read `get_account_setup`, `get_account_capabilities` and `get_account_usage`. If a plan is needed, explain which feature needs it. If the customer asks about plan options, show the plans page link from `start_subscription_setup`. Never buy for them.
 3. Pick the app with `list_apps`, or create its AppScreens record with `create_app`. This does not create the app in App Store Connect or Google Play: the store listing must already exist.
 
 ## Connect the store
