@@ -41,7 +41,7 @@ Update only the pages the release changes. With AppScreens connected, the `appsc
 
 This needs AppScreens connected with store access. Never ask for store credentials in chat; `start_app_credential_setup` gives the user a secure link to connect the store in AppScreens.
 
-1. **Find the target:** `list_store_targets` for the Apple version or Google track and release, and `list_store_locales` for its languages.
+1. Use `list_store_targets` for the Apple version or Google track and release, then `list_store_locales` for its languages. For an Apple name or subtitle, use `resource: "apple_app_infos"` and read that target with mode `appInfo`. Read version fields such as keywords separately with mode `apple`.
 2. **Read it:** `get_store_metadata`. Say what's missing or out of date for the release in each language, such as an empty What's New, text that still describes the old version, or a device with no screenshots.
 3. **Text:** `preview_store_metadata`, show the differences, get a yes, then `apply_store_metadata` with the `previewId`. To reuse text from another version or track, start with `prepare_store_metadata_copy`.
 4. **A new version or draft release:** `preview_store_release`, then `create_store_release` after a yes. It uses a build or artifact already uploaded; it never uploads binaries, submits or starts a rollout.
