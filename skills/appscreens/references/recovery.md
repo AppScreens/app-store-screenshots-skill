@@ -14,6 +14,8 @@ Find out what happened before doing it again:
 
 To make a REST or CI retry safe without reading first, send the same `Idempotency-Key` header (or `idempotencyKey` argument) on both attempts. Use a new key for a different request.
 
+If a saved preview or export fails with `DEVICE_FRAME_UNAVAILABLE`, the renderer could not load the selected device frame. Keep the operation ID and the reported page and output size. If the user approves a different frame, change the frame and render the new revision. If they need that exact frame, give them the operation ID for support.
+
 ## Long imports
 
 For a large import you may need to resume later. Keep a small, non-secret progress file at `.appscreens/imports/<session>.json` with the project ID, the chosen files in order (`path`, `sizeBytes`, `mimeType`, plus `uploadId`, `assetId` and `sha256` as you get them) and any reviewed assignments. On resume, check each saved asset with `get_asset` and read the project again. Before uploading a known file again, compare its SHA-256 with the saved one so a changed file is not uploaded by mistake. Never store signed URLs, form fields or credentials in it.

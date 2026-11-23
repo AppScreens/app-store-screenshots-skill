@@ -16,7 +16,7 @@ Store screenshots look like an image task, but shipping them is a pipeline: idea
 | Sizes | Look up and track every size, device frame and safe area each store accepts | Every App Store and Google Play screenshot size, Google Play feature graphics, Apple product page header and search artwork, and In-App Event media, checked before export |
 | Design | Layout code to write and keep working | Edits saved to a project that can be watched live, adjusted in the editor and restored from version history |
 | Languages | Translate, refit every caption, and handle right-to-left text and fonts for each script | 88 languages, including right-to-left, with automatic translation that uses the app's context, or translations you write |
-| Preview | Render and lay out comparisons yourself | Rendered pages, and the listing as it looks in the App Store and Google Play |
+| Preview | Render and lay out comparisons yourself | Interactive screenshot galleries and App Store or Google Play listing previews, with images or browser views as alternatives |
 | Export | Render every page at every size in every language | One export of store-ready files |
 | Store | Build App Store Connect and Google Play API clients, keys, screenshot sets per device and retries | Upload screenshots and listing text and create draft versions, each after a preview is approved; store keys stay in AppScreens |
 | A/B tests | Set up treatments and custom product pages by hand in App Store Connect | Create an Apple product page optimization test or custom product page and upload to it; Google Play experiments are finished in Play Console |
@@ -25,7 +25,7 @@ Store screenshots look like an image task, but shipping them is a pipeline: idea
 ## Skills in this pack
 
 <!-- skills:start -->
-Pack version 0.8.27.
+Pack version 0.8.32.
 
 | Skill | What it does | AppScreens connection | Try |
 |---|---|---|---|

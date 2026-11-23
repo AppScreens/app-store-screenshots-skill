@@ -6,7 +6,7 @@ Open the requested project with `get_project` and keep its saved revision. Read 
 
 - For a copy adapted to a different app or release scope, [plan screenshot requirements](project-workflows.md#plan-screenshot-requirements) before copying. For a same-scope copy, inherit the existing settings.
 - For a separate copy of an owned project, use `duplicate_project`. Keep its source captures and translations unless the customer asks for a clean copy. The copy has new page and element IDs. Read it before editing, and leave the original alone.
-- For a whole public template, use `create_project` in template mode. Use `get_template` to check the pages first. Replace sample copy, captures and any sample artwork that is specific to the template app.
+- For a whole public template, use `create_project` in template mode. Call `get_template` with only `templateId` to list its pages. To inspect one page, use its returned `screenshots[].id` as `screenshotId`. If a page lookup fails, restart with only the template ID. Replace sample copy, captures and any sample artwork that is specific to the template app.
 - To add one page, use `add_project_screenshot` in duplicate mode for a page in the current project, or template mode with the template ID and source page ID from `get_template`. Use the destination IDs returned by the write.
 - For a close match to a finished screenshot or listing design, use the screenshot-reference-match skill or `appscreens://workflow/reference-match`.
 
