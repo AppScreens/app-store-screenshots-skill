@@ -38,6 +38,10 @@ Use approved asset IDs, and font names already on the page or from `list_fonts`,
 
 The first draft preserves unrepresented native settings in the server baseline. Inspect its warnings: global styles, target/locale overrides, unsupported inline formats or the backgrounds from `get_project_backgrounds` may change the visible result. A read-only or unsupported field is not permission to inject it into the document or replace the entire scene. Source-language changes use the existing migration/settings tool, never this composition document.
 
+## Element groups
+
+A page's `groups` lists its element groups for awareness; an import keeps them as they are. Change them with `apply_project_changes` `group.add` and `group.remove`.
+
 ## Set captions and shared shadows
 
 Pass these operations to `apply_project_changes` with the saved `projectId`, current `baseRevision` and an existing Text element ID. `text.set` takes formatted content, not a plain string. Omitting `language` edits the source language; a blank source subtitle removes it and its translations. `clearFormatting: true` makes this explicit even when the old subtitle has mixed formatting. For other text changes, preserve formatting unless the user wants it replaced.

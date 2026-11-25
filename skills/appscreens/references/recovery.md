@@ -9,7 +9,7 @@ Find out what happened before doing it again:
 - **Render or export:** `list_operations` for the project. A repeated preview or export of the same version and selection returns the one still running, so restarting it does not render twice. Once it has finished, a repeat starts a new one.
 - **Project edit:** read the project. If its revision moved on and the change is there, it worked. Otherwise send the edit again with the current revision.
 - **New project:** `list_projects`. Only create another one if none was made.
-- **Upload:** call `complete_asset_upload` again with the same `uploadId`. If the upload had not finished, upload the same file to the same intent again. Do not create a second intent just because the asset is not visible yet.
+- **Upload:** call `complete_asset_upload` again with the same `uploadId`. If the upload had not finished, upload the same file to the same intent again. Do not create a second intent just because the asset is not visible yet. If the client's proxy or sandbox blocks the upload host, or the upload times out through both `upload.url` and `upload.relayUrl`, follow [blocked uploads](asset-import.md#if-the-client-blocks-the-upload) instead.
 - **Store change:** repeating the same `previewId`, or a screenshot upload with the same `idempotencyKey`, returns the first result and never writes twice. If the result is uncertain, read the store or the deployment instead of writing again.
 
 To make a REST or CI retry safe without reading first, send the same `Idempotency-Key` header (or `idempotencyKey` argument) on both attempts. Use a new key for a different request.
@@ -33,7 +33,7 @@ Restoring a project version never undoes a store change, and never restore a who
 
 ## Stop and hand off
 
-On authorization, account mismatch, quota or invalid-file errors, stop that part of the work and explain what the user needs to do. Keep what already succeeded and report its IDs.
+On authorization, account mismatch, quota or invalid-file errors, or when the client blocks the upload host, stop that part of the work and explain what the user needs to do. Keep what already succeeded and report its IDs.
 
 ## Plan and usage limits
 
