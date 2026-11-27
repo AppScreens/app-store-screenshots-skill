@@ -25,7 +25,7 @@ Store screenshots look like an image task, but shipping them is a pipeline: idea
 ## Skills in this pack
 
 <!-- skills:start -->
-Pack version 0.8.35.
+Pack version 0.8.36.
 
 | Skill | What it does | AppScreens connection | Try |
 |---|---|---|---|
